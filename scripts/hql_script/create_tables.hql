@@ -20,6 +20,7 @@ component_id_8 STRING,
 quantity_8 STRING
 )
 STORED AS PARQUET
+LOCATION 'gs://tables_boavista/bill_of_materials/'
 TBLPROPERTIES ("parquet.compress"="SNAPPY");
 
 
@@ -42,6 +43,7 @@ orientation STRING,
 weight STRING
 )
 STORED AS PARQUET
+LOCATION 'gs://tables_boavista/comp_boss/'
 TBLPROPERTIES ("parquet.compress"="SNAPPY");
 
 
@@ -58,4 +60,5 @@ quantity STRING,
 cost STRING
 )
 STORED AS PARQUET
+LOCATION 'gs://tables_boavista/price_quote/'
 TBLPROPERTIES ("parquet.compress"="SNAPPY");
