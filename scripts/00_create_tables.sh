@@ -2,7 +2,7 @@
 
 ###############################################################################
 # Name: Criação de Tabelas	                                        	      #
-# Function: Data Load Worckflow                           					      #
+# Function: Data Load Workflow                           					      #
 # Authors: Vitor Paes Gonçalves   					                          #
 # Requirements: Run steps in order of appearance.                             #
 ###############################################################################
@@ -16,22 +16,27 @@ home=$1
 ## 			               	Criação de Tabelas HQL				             ##
 ###############################################################################
 
-echo "Iniciando Criação de Tableas HIVE"
+echo "Iniciando Criação de Tabelas HIVE"
 
 hql="$home/hql_script" 
 
 hive -f $hql/create_tables.hql 
+
+echo "FIM das Tabelas HIVE"
 
 
 ###############################################################################
 ## 			               	Execução Script Pyspark				             ##
 ###############################################################################
 
-echo "Iniciando Execução PYSPARK"
+echo "Iniciando Execução INGESTA UTILIZANDO PYSPARK"
 
 spark="$home/ingesta"
 
 spark-submit $spark/Main.py
+
+echo "FIM INGESTA"
+
 
 
 	
@@ -113,4 +118,7 @@ bq load \
 --autodetect \
 --source_format=PARQUET \
 lucid-parsec-292923:db.price_quote "gs://tables_boavista/price_quote/*.parquet"
+
+
+echo "fim Criação de Tabelas BIGQUERY	"
 
